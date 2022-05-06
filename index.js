@@ -10,20 +10,19 @@ const app = express(); //creating application
 
 app.use(cors()); //uses cors
 
+
+//lectura del body
+app.use( express.json());
+
 dbConnection(); //starting connection to db
 
 
 
 //rutas
-app.get( '/', (req, res) => {
-    res.status(400).json({
-        ok: true,
-        msg: 'Hola mundo'
-    })
-
-});
+app.use( '/api/usuarios', require('./routes/usuarios-route'));
+app.use( '/api/login', require('./routes/auth-route'));
 
 
 app.listen( process.env.PORT, () => { //starting app on port
     console.log("Server running on port" + 3000)
-} )
+});
