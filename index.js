@@ -16,11 +16,17 @@ app.use( express.json());
 
 dbConnection(); //starting connection to db
 
+//Directorio publico
+app.use( express.static('public'));
 
 
 //rutas
 app.use( '/api/usuarios', require('./routes/usuarios-route'));
+app.use( '/api/hospitales', require('./routes/hospitales-route'));
+app.use( '/api/medicos', require('./routes/medicos-route'));
 app.use( '/api/login', require('./routes/auth-route'));
+app.use( '/api/busqueda', require('./routes/busqueda-route'));
+app.use( '/api/upload', require('./routes/upload-route'));
 
 
 app.listen( process.env.PORT, () => { //starting app on port
